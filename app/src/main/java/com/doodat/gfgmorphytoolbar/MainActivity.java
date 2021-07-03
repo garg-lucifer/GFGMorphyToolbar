@@ -1,5 +1,6 @@
 package com.doodat.gfgmorphytoolbar;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -17,8 +18,8 @@ import com.github.badoualy.morphytoolbar.MorphyToolbar;
 public class MainActivity extends AppCompatActivity {
 
     MorphyToolbar morphyToolbar;
-    int primary2;
-    int primaryDark2;
+    int primary2 = Color.parseColor("#fbc757");  // determines the color of morphyToolbar when expanded
+    int primaryDark2 = Color.parseColor("#e6b449");  // determines the color of status bar when expanded
 
     AppBarLayout appBarLayout;
     Toolbar toolbar;
@@ -28,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        primary2 = getResources().getColor(R.color.primary2); // determines the color of morphyToolbar when expanded
-        primaryDark2 = getResources().getColor(R.color.primary_dark2); // determines the color of status bar when expanded
 
         appBarLayout = findViewById(R.id.layout_app_bar);
         toolbar = findViewById(R.id.toolbar);
@@ -61,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 } else {
+                    // hides the floating action button when morphyToolbar collapses
                     hideFab();
                     morphyToolbar.collapse();
                 }
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // These two methods hideFab() & showFab() are for hiding and showing the floating action button,
-    // which is to be used only if we are adding a floating action button.
+    // which is to be used only if you are adding a floating action button.
 
     private void hideFab() {
         fabPhoto.show();
